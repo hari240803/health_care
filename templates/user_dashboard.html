@@ -382,7 +382,10 @@
 
     <!-- Orders Tab -->
     <div id="orders" class="tab-content">
-      <h2>My Medicine Orders</h2>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2 style="margin: 0;">My Medicine Orders</h2>
+        <a href="{{ url_for('order') }}" class="btn btn-primary" style="width: auto; padding: 12px 24px;">+ Order Medicine</a>
+      </div>
       {% if orders %}
         <table class="data-table">
           <thead>

@@ -21,6 +21,7 @@
   <li><a href="{{ url_for('contact') }}">Contact</a></li>
   <li><a href="{{ url_for('login') }}">Patient Login</a></li>
   <li><a href="{{ url_for('doctor_login') }}">Doctor Login</a></li>
+  <li><a href="{{ url_for('register') }}" style="background: #48bb78; color: white; padding: 8px 15px; border-radius: 5px;">Register</a></li>
 </ul>
 
 
@@ -35,6 +36,11 @@
       <a href="{{ url_for('doctor') }}" class="btn">Consult a Doctor</a>
       <a href="{{ url_for('order') }}" class="btn secondary">Order Medicine</a>
     </div>
+    <p style="margin-top: 30px; font-size: 1.1em;">
+      New to HealthConnect?
+      <a href="{{ url_for('register') }}" style="color: #48bb78; font-weight: bold; text-decoration: underline;">Register as Patient</a> |
+      <a href="{{ url_for('doctor_register') }}" style="color: #667eea; font-weight: bold; text-decoration: underline;">Register as Doctor</a>
+    </p>
   </section>
 
   <!-- Consult Doctor Section -->

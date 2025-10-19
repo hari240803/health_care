@@ -17,7 +17,8 @@
         <li><a href="{{ url_for('order') }}">Order Medicine</a></li>
         <li><a href="{{ url_for('about') }}">About</a></li>
         <li><a href="{{ url_for('contact') }}">Contact</a></li>
-        <li><a href="{{ url_for('login') }}" class="active">Login</a></li>
+        <li><a href="{{ url_for('login') }}" class="active">Patient Login</a></li>
+        <li><a href="{{ url_for('doctor_login') }}">Doctor Login</a></li>
       </ul>
       <div class="hamburger">
         <span></span>
@@ -36,7 +37,8 @@
       <input type="text" name="username" placeholder="Username" required>
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Login</button>
-     <!-- <p>New user? <a href="{{ url_for('register') }}">Register here</a></p> -->
+      <p>Don't have an account? <a href="{{ url_for('register') }}" style="color: #48bb78; font-weight: bold;">Register here</a></p>
+      <p>Are you a doctor? <a href="{{ url_for('doctor_login') }}" style="color: #667eea;">Doctor Login</a> | <a href="{{ url_for('doctor_register') }}" style="color: #667eea;">Register as Doctor</a></p>
     </form>
   </main>
 

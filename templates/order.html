@@ -34,7 +34,24 @@
   <!-- Order Section -->
   <main class="order-section">
     <h2>Order Medicine</h2>
-    <form id="orderForm">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category == 'error' %}
+            <div style="padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f8d7da; color: #721c24;">
+              {{ message }}
+            </div>
+          {% else %}
+            <div style="padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #d4edda; color: #155724;">
+              {{ message }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form id="orderForm" method="POST" action="{{ url_for('order') }}" enctype="multipart/form-data">
       <!-- Prescription Upload -->
       <label for="prescription">Upload Doctor Prescription:</label>
       <input type="file" id="prescription" name="prescription" accept="image/*,.pdf" required>
@@ -46,23 +63,16 @@
         <div class="address">
           <input type="text" name="fullname" placeholder="Full Name" required>
           <input type="tel" name="phone" placeholder="Phone Number" required>
-          <input type="text" name="zipcode" placeholder="Enter Zip Code" class="zipcode">
+          <input type="text" name="zipcode" placeholder="Enter Zip Code" class="zipcode" required>
           <input type="text" name="town" placeholder="Enter Town/Village" class="town" autocomplete="off" required>
           <div class="suggestions town-suggestions"></div>
           <input type="text" name="landmark" placeholder="Select Landmark" class="landmark" autocomplete="off" required>
           <div class="suggestions landmark-suggestions"></div>
         </div>
       </div>
-      <button type="button" id="addAddressBtn">+ Add Another Address</button>
       <button type="submit" class="order-btn">Place Order</button>
     </form>
   </main>
-
-  <!-- Notification -->
-  <div id="successNotification">
-    <span>✅ Your order has been placed successfully!</span>
-    <button id="closeNotification">&times;</button>
-  </div>
 
   <!-- Footer -->
   <footer>
@@ -77,17 +87,6 @@
     hamburger.addEventListener("click", () => {
       navLinks.classList.toggle("active");
       hamburger.classList.toggle("toggle");
-    });
-
-    // Close notification & redirect home using Flask route
-    const closeBtn = document.getElementById("closeNotification");
-    const notification = document.getElementById("successNotification");
-
-    closeBtn.addEventListener("click", ()=>{
-      notification.classList.remove("show");
-      setTimeout(()=>{
-        globalThis.location.href = "{{ url_for('home') }}";
-      }, 300);
     });
   </script>
 </body>

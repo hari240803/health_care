@@ -164,9 +164,11 @@ def register():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        email = request.form.get('email', '')
-        phone = request.form.get('phone', '')
-        full_name = request.form.get('full_name', '')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        full_name = request.form.get('full_name')
+        age = request.form.get('age')
+        gender = request.form.get('gender')
 
         # Check if user already exists
         existing_user = db.get_user_by_username(username)
@@ -174,16 +176,58 @@ def register():
             flash('Username already exists! Please choose a different one.', 'error')
             return render_template('register.html')
 
-        # Create new user
-        user_id = db.create_user(username, password, email, phone, full_name)
+        # Create new user with all fields
+        user_id = db.create_user(username, password, email, phone, full_name, age, gender)
 
         if user_id:
-            flash('Registration successful! Please login.', 'success')
+            flash('Registration successful! Please login with your credentials.', 'success')
             return redirect(url_for('login'))
         else:
             flash('Registration failed! Please try again.', 'error')
 
     return render_template('register.html')
+
+# Doctor Register page
+@app.route('/doctor-register', methods=['GET', 'POST'])
+def doctor_register():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        full_name = request.form.get('full_name')
+        specialization = request.form.get('specialization')
+        qualification = request.form.get('qualification', '')
+        experience_years_str = request.form.get('experience_years', '0')
+        consultation_fee_str = request.form.get('consultation_fee', '500')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+
+        # Validate and convert numeric fields with defaults
+        try:
+            experience_years = int(experience_years_str) if experience_years_str else 0
+            consultation_fee = float(consultation_fee_str) if consultation_fee_str else 500.0
+        except (ValueError, TypeError):
+            flash('Invalid experience years or consultation fee. Please enter valid numbers.', 'error')
+            return render_template('doctor_register.html')
+
+        # Check if doctor already exists
+        existing_doctor = db.get_doctor_by_username(username)
+        if existing_doctor:
+            flash('Username already exists! Please choose a different one.', 'error')
+            return render_template('doctor_register.html')
+
+        # Create new doctor
+        doctor_id = db.create_doctor(
+            username, password, full_name, specialization,
+            email, phone, experience_years, qualification, consultation_fee
+        )
+
+        if doctor_id:
+            flash('Doctor registration successful! Please login with your credentials.', 'success')
+            return redirect(url_for('doctor_login'))
+        else:
+            flash('Registration failed! Please try again.', 'error')
+
+    return render_template('doctor_register.html')
 
 # Doctor Login page
 @app.route('/doctor-login', methods=['GET', 'POST'])

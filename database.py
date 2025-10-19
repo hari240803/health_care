@@ -163,6 +163,23 @@ def get_user_by_username(username):
     conn.close()
     return user
 
+def create_doctor(username, password, full_name, specialization, email=None, phone=None, experience_years=0, qualification='', consultation_fee=500.0):
+    """Create a new doctor"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            INSERT INTO doctors (username, password, full_name, specialization, email, phone, experience_years, qualification, consultation_fee, available)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+        ''', (username, password, full_name, specialization, email, phone, experience_years, qualification, consultation_fee))
+        conn.commit()
+        doctor_id = cursor.lastrowid
+        conn.close()
+        return doctor_id
+    except sqlite3.IntegrityError:
+        conn.close()
+        return None
+
 def get_doctor_by_username(username):
     """Get doctor by username"""
     conn = get_db_connection()
