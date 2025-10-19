@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - HealthConnect</title>
+
+  <!-- Link CSS from static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="logo">HealthConnect</div>
+    <nav>
+      <ul class="nav-links">
+        <!-- Flask url_for ensures correct routing -->
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('doctor') }}">Consult Doctor</a></li>
+        <li><a href="{{ url_for('order') }}">Order Medicine</a></li>
+        <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      </ul>
+
+      <!-- Hamburger menu for mobile -->
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <main class="about-section">
+    <h1>About HealthConnect</h1>
+    <p>
+      HealthConnect is a community-focused healthcare platform that helps patients 
+      connect with doctors online, get prescriptions instantly, and even order medicines 
+      for home delivery. We aim to make healthcare more accessible, especially when 
+      patients are away from their hometown or cannot visit a hospital immediately.
+    </p>
+
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to bridge the gap between patients and healthcare services 
+      by providing a digital-first solution. Whether it’s consulting with a doctor, 
+      getting a prescription, or placing a medicine order, HealthConnect ensures 
+      healthcare is just a click away.
+    </p>
+
+    <h2>Key Features</h2>
+    <ul>
+      <li>✔ Easy doctor consultation online</li>
+      <li>✔ Upload prescription & order medicines</li>
+      <li>✔ Multiple delivery addresses for flexibility</li>
+      <li>✔ Secure and private health data management</li>
+    </ul>
+
+    <h2>Our Team</h2>
+    <div class="team">
+      <div class="team-member">
+        <h3>Ravipati Anusha</h3>
+        <p>Founder & Developer</p>
+      </div>
+      <div class="team-member">
+        <h3>Asha</h3>
+        <p>Project Supervisor</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 HealthConnect. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JS from static folder -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  <!-- Optional: Inline JS for hamburger toggle -->
+  <script>
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("toggle");
+    });
+  </script>
+</body>
+</html>

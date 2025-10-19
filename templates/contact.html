@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - HealthConnect</title>
+
+  <!-- Link CSS from static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="logo">HealthConnect</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('doctor') }}">Consult Doctor</a></li>
+        <li><a href="{{ url_for('order') }}" class="active">Order Medicine</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <main class="contact-section">
+    <h1>Contact Us</h1>
+    <p class="intro">We’d love to hear from you! Please reach out for any questions, feedback, or support.</p>
+
+    <div class="contact-container">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p><strong>Email:</strong> support@healthconnect.com</p>
+        <p><strong>Phone:</strong> +91 98765 43210</p>
+        <p><strong>Address:</strong> Hyderabad, India</p>
+      </div>
+
+      <!-- Contact Form -->
+      <form id="contactForm" class="contact-form" method="POST" action="{{ url_for('contact') }}">
+        <h2>Send a Message</h2>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="send-btn">Send Message</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 HealthConnect. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JS file -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  <!-- Inline script for form & menu -->
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("toggle");
+    });
+
+    // Contact form submit
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("✅ Thank you for contacting us! We will get back to you soon.");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

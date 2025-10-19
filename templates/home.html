@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthConnect - Home</title>
+
+  <!-- Load CSS from static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="logo">HealthConnect</div>
+    <nav>
+<ul>
+  <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+  <li><a href="{{ url_for('doctor') }}">Consult Doctor</a></li>
+  <li><a href="{{ url_for('order') }}">Order Medicine</a></li>
+  <li><a href="{{ url_for('about') }}">About</a></li>
+  <li><a href="{{ url_for('contact') }}">Contact</a></li>
+  <li><a href="{{ url_for('login') }}">Patient Login</a></li>
+  <li><a href="{{ url_for('doctor_login') }}">Doctor Login</a></li>
+</ul>
+
+
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to HealthConnect</h1>
+    <p>Consult doctors online and get medicines delivered at your doorstep.</p>
+    <div class="hero-buttons">
+      <a href="{{ url_for('doctor') }}" class="btn">Consult a Doctor</a>
+      <a href="{{ url_for('order') }}" class="btn secondary">Order Medicine</a>
+    </div>
+  </section>
+
+  <!-- Consult Doctor Section -->
+  <section id="consult" class="feature">
+    <h2>Consult a Doctor</h2>
+    <p>Explain your problem to a certified doctor and get advice instantly.</p>
+    <a href="{{ url_for('doctor') }}" class="btn">Start Consultation</a>
+  </section>
+
+  <!-- About Section -->
+  <section class="about feature alt">
+    <h2>About HealthConnect</h2>
+    <p>HealthConnect is your one-stop solution for online doctor consultation and medicine delivery at home.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 HealthConnect. All rights reserved.
+  </footer>
+
+  <!-- Load JS from static folder -->
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>

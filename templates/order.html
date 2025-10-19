@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Medicine - HealthConnect</title>
+
+  <!-- CSS from static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/order.css') }}">
+  <script src="{{ url_for('static', filename='js/order.js') }}"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="logo">HealthConnect</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('doctor') }}">Consult Doctor</a></li>
+        <li><a href="{{ url_for('order') }}" class="active">Order Medicine</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('login') }}">Patient Login</a></li>
+        <li><a href="{{ url_for('doctor_login') }}">Doctor Login</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Order Section -->
+  <main class="order-section">
+    <h2>Order Medicine</h2>
+    <form id="orderForm">
+      <!-- Prescription Upload -->
+      <label for="prescription">Upload Doctor Prescription:</label>
+      <input type="file" id="prescription" name="prescription" accept="image/*,.pdf" required>
+      <div id="prescriptionPreview"></div>
+
+      <!-- Address Section -->
+      <h3>Delivery Address</h3>
+      <div id="addressContainer">
+        <div class="address">
+          <input type="text" name="fullname" placeholder="Full Name" required>
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+          <input type="text" name="zipcode" placeholder="Enter Zip Code" class="zipcode">
+          <input type="text" name="town" placeholder="Enter Town/Village" class="town" autocomplete="off" required>
+          <div class="suggestions town-suggestions"></div>
+          <input type="text" name="landmark" placeholder="Select Landmark" class="landmark" autocomplete="off" required>
+          <div class="suggestions landmark-suggestions"></div>
+        </div>
+      </div>
+      <button type="button" id="addAddressBtn">+ Add Another Address</button>
+      <button type="submit" class="order-btn">Place Order</button>
+    </form>
+  </main>
+
+  <!-- Notification -->
+  <div id="successNotification">
+    <span>✅ Your order has been placed successfully!</span>
+    <button id="closeNotification">&times;</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 HealthConnect | All Rights Reserved</p>
+  </footer>
+
+  <!-- Hamburger toggle -->
+  <script>
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("toggle");
+    });
+
+    // Close notification & redirect home using Flask route
+    const closeBtn = document.getElementById("closeNotification");
+    const notification = document.getElementById("successNotification");
+
+    closeBtn.addEventListener("click", ()=>{
+      notification.classList.remove("show");
+      setTimeout(()=>{
+        globalThis.location.href = "{{ url_for('home') }}";
+      }, 300);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consult Doctor - HealthConnect</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="logo">HealthConnect</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('doctor') }}" class="active">Consult Doctor</a></li>
+        <li><a href="{{ url_for('order') }}">Order Medicine</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('login') }}">Patient Login</a></li>
+        <li><a href="{{ url_for('doctor_login') }}">Doctor Login</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Consult a Doctor</h1>
+    <p>Fill in your details, select location, choose a doctor, and get help instantly.</p>
+  </section>
+
+  <!-- Multi-Step Form -->
+  <section class="form-section">
+    <form id="consultForm" autocomplete="on">
+      <!-- Step 1: Personal Info -->
+      <div class="form-step active">
+        <h2>Step 1: Your Details</h2>
+        <input type="text" placeholder="Full Name" name="fullname" required>
+        <input type="number" placeholder="Age" name="age" required>
+        <select name="gender" required>
+          <option value="">Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+        <button type="button" class="next-btn">Next</button>
+      </div>
+
+      <!-- Step 2: Location -->
+      <div class="form-step">
+        <h2>Step 2: Enter Your Location</h2>
+        <input type="text" placeholder="City or Area" name="city" required>
+        <div class="btn-group">
+          <button type="button" class="prev-btn">Back</button>
+          <button type="button" class="next-btn">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Select Doctor -->
+      <div class="form-step">
+        <h2>Step 3: Choose a Doctor</h2>
+        <select name="doctor" required>
+          <option value="">Select Doctor</option>
+          <option>Dr. Ravi Kumar (General Physician)</option>
+          <option>Dr. Meera Sharma (Pediatrician)</option>
+          <option>Dr. Arjun Reddy (Cardiologist)</option>
+        </select>
+        <div class="btn-group">
+          <button type="button" class="prev-btn">Back</button>
+          <button type="button" class="next-btn">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Service Type -->
+      <div class="form-step">
+        <h2>Step 4: Choose Service</h2>
+        <label><input type="radio" name="service" value="Prescription" required> Only Prescription</label><br>
+        <label><input type="radio" name="service" value="Appointment" required> Book Appointment</label>
+        <div class="btn-group">
+          <button type="button" class="prev-btn">Back</button>
+          <button type="button" class="next-btn">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Problem Description -->
+      <div class="form-step">
+        <h2>Step 5: Describe Your Problem</h2>
+        <textarea placeholder="Write your health issue here..." name="problem" rows="5" required></textarea>
+        <div class="btn-group">
+          <button type="button" class="prev-btn">Back</button>
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Success Notification -->
+  <div id="successNotification">
+    <span>Request submitted successfully!</span>
+    <button id="closeNotification">&times;</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 HealthConnect | All Rights Reserved</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+</body>
+</html>

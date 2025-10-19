@@ -1,0 +1,31 @@
+body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:0; line-height:1.5;}
+header { background: #0077b6; color:white; display:flex; justify-content:space-between; align-items:center; padding:15px 50px; position: sticky; top:0; z-index:1000;}
+header .logo { font-size:24px; font-weight:bold; }
+.nav-links { list-style:none; display:flex; gap:25px; }
+.nav-links li a { color:white; text-decoration:none; padding:8px 12px; border-radius:5px; }
+.nav-links li a:hover, .nav-links li a.active { background:#00b4d8; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.hamburger span { width:25px; height:3px; background:white; border-radius:3px; }
+
+.order-section { max-width:600px; margin:50px auto; padding:25px; background:#f8f9fa; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+.order-section h2 { text-align:center; margin-bottom:20px; color:#0077b6; }
+.order-section form { display:flex; flex-direction:column; gap:15px; }
+.order-section input[type="file"], .order-section input[type="text"], .order-section input[type="tel"] { padding:10px; border:1px solid #ccc; border-radius:6px; width:100%; position:relative; }
+.order-section .suggestions { position:relative; border:1px solid #ccc; background:white; border-radius:5px; max-height:120px; overflow-y:auto; display:none; z-index:100; }
+.order-section .suggestions div { padding:8px; cursor:pointer; }
+.order-section .suggestions div:hover { background:#f1f1f1; }
+
+#addAddressBtn { background:#00b4d8; color:white; border:none; padding:10px; border-radius:6px; cursor:pointer; }
+#addAddressBtn:hover { background:#0096c7; }
+.order-btn { background:#0077b6; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-size:16px; }
+.order-btn:hover { background:#0096c7; }
+
+#successNotification { position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#00b894; color:white; padding:15px 25px; border-radius:8px; opacity:0; pointer-events:none; display:flex; align-items:center; gap:20px; z-index:2000; transition:0.5s; }
+#successNotification.show { opacity:1; pointer-events:auto; }
+#successNotification button { background:transparent; border:none; font-size:20px; color:white; cursor:pointer; }
+
+@media(max-width:768px){
+  .nav-links { position:absolute; top:60px; right:0; background:#0077b6; width:200px; flex-direction:column; padding:15px; display:none;}
+  .nav-links.active { display:flex; }
+  .hamburger { display:flex; }
+}

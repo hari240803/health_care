@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Prescription - HealthConnect</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      color: #667eea;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .doctor-info {
+      background: #f8f9ff;
+      border-left: 4px solid #48bb78;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+
+    .doctor-info h2 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .doctor-info p {
+      color: #666;
+      margin: 5px 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 5px;
+      font-size: 1em;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #48bb78;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+    }
+
+    .btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #d0d0d0;
+    }
+
+    .required {
+      color: #ff6b6b;
+    }
+
+    .info-box {
+      background: #fff9e6;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 5px;
+      font-size: 0.9em;
+      color: #856404;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Request Prescription</h1>
+
+    <div class="doctor-info">
+      <h2>{{ doctor.full_name }}</h2>
+      <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+      <p><strong>Experience:</strong> {{ doctor.experience_years }} years</p>
+      {% if doctor.qualification %}
+        <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
+      {% endif %}
+    </div>
+
+    <div class="info-box">
+      <strong>Note:</strong> Please provide detailed information about your symptoms. The doctor will review your request and provide a prescription if appropriate.
+    </div>
+
+    <form method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Age <span class="required">*</span></label>
+          <input type="number" name="age" placeholder="Your age" required min="1" max="150" value="{{ user.age if user.age }}">
+        </div>
+
+        <div class="form-group">
+          <label>Gender <span class="required">*</span></label>
+          <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male" {% if user.gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if user.gender == 'Female' %}selected{% endif %}>Female</option>
+            <option value="Other" {% if user.gender == 'Other' %}selected{% endif %}>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>City/Location <span class="required">*</span></label>
+        <input type="text" name="city" placeholder="Your city or location" required>
+      </div>
+
+      <div class="form-group">
+        <label>Describe Your Health Problem <span class="required">*</span></label>
+        <textarea name="problem" placeholder="Please describe your symptoms, duration, and any other relevant information..." required></textarea>
+      </div>
+
+      <div class="btn-group">
+        <a href="{{ url_for('user_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
