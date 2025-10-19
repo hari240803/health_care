@@ -9,27 +9,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-coverage.xml
-*.cover
-*.py,cover
-
-# IDEs and editors
-.vscode/
-.idea/
-*.swp
-*.swo
-
 # Logs and databases
 *.log
 *.sqlite3
