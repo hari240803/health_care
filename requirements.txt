@@ -15,19 +15,3 @@ Werkzeug==3.0.1
 # Database
 # - SQLite3 (built into Python, no installation required)
 
-# Optional: For production deployment
-# gunicorn==21.2.0  # WSGI HTTP Server
-# python-dotenv==1.0.0  # Environment variables
-
-# Optional: For enhanced security
-# bcrypt==4.1.2  # Password hashing
-# Flask-WTF==1.2.1  # CSRF protection
-
-# Optional: For testing
-# pytest==7.4.3  # Testing framework
-# pytest-flask==1.3.0  # Flask testing utilities
-
-# Installation:
-# pip install -r requirements.txt
-
-# Note: Uncomment optional dependencies as needed
