@@ -485,29 +485,6 @@ To test the application:
    - Check `uploads/` folder exists
    - Verify file size < 16MB
 
-## Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Support
-
-For support or queries:
-- Email: support@healthconnect.com
-- Open an issue in the repository
-
----
 
 **Built with Flask and SQLite**
 

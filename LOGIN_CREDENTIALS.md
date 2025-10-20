@@ -213,14 +213,6 @@ For production:
 
 ---
 
-## 📞 Support
-
-If credentials don't work:
-1. Check if database exists: `dir healthconnect.db`
-2. Reinitialize database: `python database.py`
-3. Add sample data: `python add_sample_data.py`
-4. View database: `python view_db.py`
-
 ---
 
 **Last Updated:** October 2025

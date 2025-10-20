@@ -46,7 +46,7 @@ ID: 1 | Username: dr_ravi | Name: Dr. Ravi Kumar
 ### Open Database
 1. Launch "DB Browser for SQLite"
 2. Click **"Open Database"** button
-3. Navigate to: `D:\genAI\healthconnect\healthconnect.db`
+3. Navigate to: `healthconnect\healthconnect.db`
 4. Select the file and click "Open"
 
 ### Features:
